@@ -3615,7 +3615,7 @@ Hatena.Star.Star = new Ten.Class({
             img.setAttribute('height', '20px');
             img.className = 'hatena-star-star';
             var s = img.style;
-            s.margin = '0 2px -5px 2px';
+            s.margin = '0 2px -6px 2px';
             s.border = 'none';
             this.gotImage[color.ImgSrc] = img;
         }
