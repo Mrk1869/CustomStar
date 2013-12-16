@@ -3605,11 +3605,12 @@ Hatena.Star.Star = new Ten.Class({
     getImage: function(container, name) {
         var color = this.ColorPallet[container._starColor];
         color = (color) ? color : this.ColorPallet['yellow'];
-        if (!this.gotImage[color.ImgSrc]) {
+        if (!this.gotImage[color.ImgSrc] || this.gotImage[color.ImgSrc].alt != name) {
             var img = document.createElement('img');
             //custom hatena star
             //img.src = Hatena.Star.Button.getImgSrc(color,container);
-            img.src = "http://n.hatena.com/"+name+"/profile/image.gif?type=face&size=32"
+            img.src = "http://n.hatena.com/"+name+"/profile/image.gif?type=face&size=32";
+            img.alt = name;
             img.setAttribute('tabIndex', 0);
             img.setAttribute('width', '20px');
             img.setAttribute('height', '20px');
@@ -3621,8 +3622,8 @@ Hatena.Star.Star = new Ten.Class({
         }
         return this.gotImage[color.ImgSrc].cloneNode(false);
     },
-//    ImgSrcSelector: '.hatena-star-star-image',
-//    ImgSrc: Hatena.Star.BaseURL.replace(/^http:/, Hatena.Star.BaseURLProtocol) + 'images/star.gif',
+    //    ImgSrcSelector: '.hatena-star-star-image',
+    //    ImgSrc: Hatena.Star.BaseURL.replace(/^http:/, Hatena.Star.BaseURLProtocol) + 'images/star.gif',
     ColorPallet : {
         'yellow' : {
             ImgSrcSelector: '.hatena-star-star-image',
