@@ -3593,6 +3593,19 @@ Hatena.Star.Star = new Ten.Class({
         }
         this.anchor = document.createElement('a');
         this.anchor.href = this.getAnchor();
+
+        //custom hatena star
+        var img = document.createElement('img');
+        img.src = "http://n.hatena.com/"+this.screen_name+"/profile/image.gif?type=face&size=32";
+        img.alt = this.screen_name;
+        img.setAttribute('tabIndex', 0);
+        img.setAttribute('width', '20px');
+        img.setAttribute('height', '20px');
+        img.className = 'hatena-star-user';
+        var s = img.style;
+        s.margin = '0px 2px -6px 2px';
+        s.border = 'none';
+        this.anchor.appendChild(img);
         this.anchor.appendChild(this.img);
 
         this.count = args.count;
@@ -3602,21 +3615,19 @@ Hatena.Star.Star = new Ten.Class({
         }
     },
     gotImage: {},
-    getImage: function(container, name) {
+    getImage: function(container) {
         var color = this.ColorPallet[container._starColor];
         color = (color) ? color : this.ColorPallet['yellow'];
-        if (!this.gotImage[color.ImgSrc] || this.gotImage[color.ImgSrc].alt != name) {
+        if (!this.gotImage[color.ImgSrc]) {
             var img = document.createElement('img');
-            //custom hatena star
-            //img.src = Hatena.Star.Button.getImgSrc(color,container);
-            img.src = "http://n.hatena.com/"+name+"/profile/image.gif?type=face&size=32";
+            img.src = Hatena.Star.Button.getImgSrc(color,container);
             img.alt = name;
             img.setAttribute('tabIndex', 0);
-            img.setAttribute('width', '20px');
-            img.setAttribute('height', '20px');
+            img.setAttribute('width', '10px');
+            img.setAttribute('height', '10px');
             img.className = 'hatena-star-star';
             var s = img.style;
-            s.margin = '0 2px -6px 2px';
+            s.margin = '0px 12px -6px -22px';
             s.border = 'none';
             this.gotImage[color.ImgSrc] = img;
         }
@@ -3652,7 +3663,7 @@ Hatena.Star.Star = new Ten.Class({
     }
 },{
     generateImg: function () {
-        var img = Hatena.Star.Star.getImage(this.container, this.name);
+        var img = Hatena.Star.Star.getImage(this.container);
         img.alt = this.screen_name;
         img.title = '';
         if (this.color && this.color != 'yellow' && this.color != 'temp') {
